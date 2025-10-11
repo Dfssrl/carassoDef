@@ -13,9 +13,14 @@ const WrapperBox: React.FC<WrapperBoxProps> = ({ children }) => {
             flexDirection: "row",
             height: "100vh",
             width: "100vw",
+            overflowY: "auto",
+            overflowX: "hidden",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "rgba(245, 245, 245, 0.8)",
+            backgroundColor: "transparent",
+            border: "3px solid white",
+            p: 0,
+            m: 0,
         }}>
             {children}
         </Box>

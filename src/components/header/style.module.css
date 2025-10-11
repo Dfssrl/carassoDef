@@ -1,0 +1,98 @@
+.container_header {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 120px;
+    /* aumentata per dare più spazio al logo */
+    background-color: transparent;
+    border: 2px solid white;
+    z-index: 1000;
+}
+
+.logo {
+    /* rende il contenitore del logo un flex container per centrare il contenuto */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    /* il logo non deve ridursi: usiamo flex non-shrink e width auto
+       così il wrapper interno (`.logo_image`) può avere dimensione fissa */
+    flex: 0 0 auto;
+    width: 20%;
+    border: 2px dotted green;
+}
+
+.timer {
+    height: 95%;
+    width: 20%;
+    margin-left: 20px;
+    border: 2px dotted green;
+}
+
+.time_box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+}
+
+.profile {
+    height: 95%;
+    width: 45%;
+    margin-left: 20px;
+    border: 2px dotted green;
+}
+
+.profile_box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.azioni {
+    height: 95%;
+    width: 15%;
+    margin-right: 10px;
+    border: 2px dotted green;
+}
+
+.azioni_box {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.logo_image {
+    /* wrapper responsivo per Next/Image */
+    position: relative;
+    /* utile se si usa Image with fill */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* centro l'immagine dentro il wrapper */
+    /* dimensione aziendale richiesta: 160x160px */
+    width: 230px;
+    height: 100%;
+    /* background-color: rgb(0, 0, 0); */
+}
+
+.img {
+    /* Next/Image in modalità `fill` posiziona l'elemento assoluto;
+       lasciamo solo object-fit per il comportamento desiderato */
+    object-fit: cover;
+    height: 160px;
+    width: 160px;
+}
