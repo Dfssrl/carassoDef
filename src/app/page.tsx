@@ -1,7 +1,6 @@
 "use client";
-
 import WrapperBox from "@/components/WrapperBox/wrapperBox";
-import FirstPage from "./home/page";
+import HomePage from "./home/page";
 
 import { CacheProvider } from "@emotion/react";
 import { emotionCache } from "@/utils/emotionCache";
@@ -11,7 +10,7 @@ export default function Home() {
     <>
       <CacheProvider value={emotionCache}>
         <WrapperBox>
-          <FirstPage />
+          <HomePage />
         </WrapperBox>
       </CacheProvider>
     </>

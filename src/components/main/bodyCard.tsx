@@ -13,7 +13,7 @@ const BodyCard: FC<BodyCardProps> = ({
     data,
     toggleColor
 }) => {
-    const dataCards = data ?? mockCards;
+    const dataCards = data.length === 0 ? mockCards : data;
     return (
         <Box sx={{
             position: "relative",

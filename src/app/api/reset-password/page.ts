@@ -2,9 +2,9 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 import { getDataSource } from "@/connection/data-source";
-import { ResetPassword } from "@/entities/recuperaPassword";
 import { User } from "@/entities/user";
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
 
 const JWT_SECRET = process.env.JWT_SECRET!;
 
@@ -44,10 +44,18 @@ const POSTSavePassword = async (req: Request) => {
             { expiresIn: "3d" }
         );
 
-        return NextResponse.json({
+        (await cookies()).set({
+            name: "AuthToken",
+            value: token,
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            path: "/",
+            maxAge: 3 * 24 * 60 * 60,
+        });
+
+         return NextResponse.json({
             success: true,
             message: "New password is saved!",
-            token,
         });
 
     } catch (error) {

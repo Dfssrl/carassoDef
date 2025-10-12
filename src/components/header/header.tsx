@@ -13,7 +13,13 @@ interface HeaderProps {
 }
 
 const Header = ({ stateToggle, setStateToggle, startLogin }: HeaderProps) => {
-
+    // const handleLogout = async () => {
+    //     try {
+            
+    //     } catch (error) {
+            
+    //     }
+    // }
     return (
         <Box className={styles.container_header}>
             <Box className={styles.logo}>
