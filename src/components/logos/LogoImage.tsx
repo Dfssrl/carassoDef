@@ -20,7 +20,7 @@ const LogoImage = ({
             width: "100%",
             justifyContent: "center",
         }}>
-            <Image src={inverted === 'light' ? dark : light} alt="" fill />
+            <Image src={inverted === 'light' ? dark : light} alt="" fill priority />
         </Box>
     )
 };

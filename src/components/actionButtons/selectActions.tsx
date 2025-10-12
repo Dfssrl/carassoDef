@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { IconButton, Menu, MenuItem } from '@mui/material';
+import { Button, IconButton, Menu, MenuItem } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 interface MenuChooseActionsProps {
@@ -30,17 +30,22 @@ const MenuChooseActions = ({ value, setValue, logout }: MenuChooseActionsProps) 
         aria-controls="dropdown-menu"
         onClick={handleClick}
         sx={{
+          position: "relative",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
           backgroundColor: 'grey.700',
           color: 'grey.300',
           '&:hover': {
             backgroundColor: 'grey.800',
           },
-          width: '2.25rem',
-          height: '2.25rem',
-          border: '1px solid transparent',
+          width: { md: '2.5rem', xs: "1.8rem" },
+          height: { md: '2.5rem', xs: "1.8rem" },
+          // border: '1px solid red',
+          borderRadius: 8,
         }}
       >
-        <ExpandMoreIcon />
+        <ExpandMoreIcon sx={{ fontSize: '1rem' }} />
       </IconButton>
 
       <Menu

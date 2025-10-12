@@ -13,6 +13,7 @@ const Clock = () => {
         return () => clearInterval(interval);
     }, []);
 
+    if (!time) return null;
     return (
         <div>
             <p>Data e ora: {time.toLocaleString("it-IT")}</p>
