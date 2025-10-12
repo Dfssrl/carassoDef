@@ -14,10 +14,10 @@ export const getDataSource = async () => {
     // Altrimenti, crea e inizializza una nuova istanza
     const dataSource = new DataSource({
         type: 'mysql',
-        host: 'carasso.administratorsmart.com',
-        port: 3306,
-        username: 's2846fa6_admin',
-        password: 'Bactyiam2196?',
+        host: 'localhost',
+        port: 3307,
+        username: 'root',
+        password: process.env.DB_PASSWORD,
         database: 's2846fa6_carasso',
         entities: [Clienti], // Rimuovi il pattern, usa l'array
         synchronize: false,
@@ -27,3 +27,18 @@ export const getDataSource = async () => {
     AppDataSource = await dataSource.initialize();
     return AppDataSource;
 };
+
+{/**Errore DB:  Error: Handshake inactivity timeout
+    at new Promise (<anonymous>)
+    at getDataSource (src\connection\data-source.ts:27:38)
+    at GET (src\app\api\test-db\route.ts:7:47)
+  25 |     });
+  26 |
+> 27 |     AppDataSource = await dataSource.initialize();
+     |                                      ^
+  28 |     return AppDataSource;
+  29 | }; {
+  code: 'PROTOCOL_SEQUENCE_TIMEOUT',
+  fatal: true,
+  timeout: 10000
+} */}

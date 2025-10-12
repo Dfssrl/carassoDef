@@ -1,10 +1,19 @@
 import { Box, Typography } from "@mui/material"
 import { mockCards } from "../mock";
 import Cards from "../cards/Cards";
+import { CardsProps } from "@/@types/CardsProps";
+import { FC } from "react";
 
-const BodyCard = () => {
-    {/** Quando passa a mobile il contenitore sarà altezza auto e il genitore
-        ad altezza fissa di modo che quando imposterò lo scroll Y si potrà vedere senza creare rotture dei componenti */}
+interface BodyCardProps {
+    data: CardsProps[];
+    toggleColor: 'light' | 'dark';
+}
+
+const BodyCard: FC<BodyCardProps> = ({
+    data,
+    toggleColor
+}) => {
+    const dataCards = data ?? mockCards;
     return (
         <Box sx={{
             position: "relative",
@@ -16,7 +25,7 @@ const BodyCard = () => {
             alignItems: "start",
             border: "2px solid white",
         }}>
-            <Cards cards={mockCards} />
+            <Cards cards={dataCards} toggleColor={toggleColor} />
         </Box>
     );
 };

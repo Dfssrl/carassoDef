@@ -10,9 +10,10 @@ interface CardsProps {
 
 type Cards = {
     cards: CardsProps[];
+    toggleColor: 'light' | 'dark';
 };
 
-const Cards = ({ cards }: Cards) => {
+const Cards = ({ cards, toggleColor }: Cards) => {
 
     return (
         <Box sx={{
@@ -101,7 +102,7 @@ const Cards = ({ cards }: Cards) => {
                                                     height: "100%",
                                                     width: "100%",
                                                     justifyContent: "flex-end",
-                                                }}>{React.createElement(card.icon as React.ElementType, { style: { fontSize: { lg: 50, xs: 30 } } })}</Icon>
+                                                }}>{React.createElement(card.icon as React.ElementType, { style: { fontSize: 50 } })}</Icon>
                                             </Box>
                                         </Box>
                                         <Box sx={{
@@ -113,7 +114,7 @@ const Cards = ({ cards }: Cards) => {
                                             alignItems: "center",
                                             border: "2px solid purple",
                                         }}>
-                                            <Typography variant="h1" fontSize={50} sx={{ color: "rgba(255, 255, 255, 0.6)" }}>{card.numberTypology}</Typography>
+                                            <Typography variant="h1" fontSize={50} sx={{ color: toggleColor === 'dark' ? "rgba(255, 255, 255, 0.6)" : "rgba(200, 200, 200, 0.6)" }}>{card.numberTypology}</Typography>
                                         </Box>
                                        
                                     </Box>

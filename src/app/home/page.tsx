@@ -8,7 +8,7 @@ import { Box, Stack } from "@mui/material"
 
 
 const FirstPage = () => {
-    const [isLogin, setIsLogin] = useState<boolean>(false);
+    const [isLogin, setIsLogin] = useState<boolean>(true);
     const [toggle, setToggle] = useState<"light" | "dark">("dark");
     return (
         <Box
@@ -19,7 +19,7 @@ const FirstPage = () => {
             }}
         >
             {
-                isLogin ?
+                !isLogin ?
                     (
                         <Login />
                     ) : (
