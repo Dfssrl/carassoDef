@@ -61,7 +61,6 @@ const ForgotPassword = () => {
             setSnackbarMessage("Password aggiornata con successo!");
             setSnackbarSeverity("success");
             setSnackbarOpen(true);
-            localStorage.setItem("authToken", data.token);
             router.push("/dashboard");
         } catch (error) {
             console.error("Not data and error: ", error);
@@ -150,6 +149,7 @@ const ForgotPassword = () => {
                                         aria-required="true"
                                         id="email"
                                         name="email"
+                                        type="email"
                                         aria-label="email"
                                         placeholder="example@email.it"
                                         value={user.email}
@@ -168,6 +168,7 @@ const ForgotPassword = () => {
                                         aria-required="true"
                                         id="password"
                                         name="password"
+                                        type="password"
                                         aria-label="password"
                                         placeholder="password"
                                         value={user.password}

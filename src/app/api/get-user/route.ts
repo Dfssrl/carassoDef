@@ -1,10 +1,12 @@
+import 'reflect-metadata';
 import { getDataSource } from "@/connection/data-source";
+import { User } from "@/entities/user";
 import { NextResponse } from "next/server";
 
-const GetUser = async () => {
+const GET = async () => {
     try {
         const dataSource = await getDataSource();
-        const result = await dataSource.query("SELECT * FROM user");
+        const result = dataSource.getRepository(User);
 
         return NextResponse.json({
             success: true,
@@ -21,4 +23,4 @@ const GetUser = async () => {
     }
 };
 
-export default GetUser;
+export default GET;

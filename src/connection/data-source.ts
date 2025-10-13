@@ -15,7 +15,7 @@ export const getDataSource = async () => {
     const dataSource = new DataSource({
         type: 'mysql',
         host: 'localhost',
-        port: 3307,
+        port: 3306,
         username: 'root',
         password: process.env.DB_PASSWORD,
         database: 's2846fa6_carasso',
