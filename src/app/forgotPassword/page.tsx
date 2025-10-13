@@ -13,24 +13,28 @@ const ForgotPassword = () => {
         email: "",
         password: "",
     });
+
     const [loading, setLoading] = useState<boolean>(false);
     const [snackbarOpen, setSnackbarOpen] = useState<boolean>(false);
     const [snackbarMessage, setSnackbarMessage] = useState("");
     const [snackbarSeverity, setSnackbarSeverity] = useState<"success" | "error">("success");
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
+    const handleChange= (e: React.ChangeEvent<HTMLInputElement>) => {
+       const { name, value } = e.target;
+  console.log("handleChange triggered", name, value);
         setUser(prev => ({
             ...prev,
-            [name]: value,
-        }));
+            [name]: value
+        }))
+        
     };
 
     const handleSaveNewPassword = async (e: React.FormEvent<HTMLFormElement>) => {
+        console.log('dentro: '+e)
         e.preventDefault();
         setLoading(true);
-
         try {
+            
             const res = await fetch("/api/reset-password", {
                 method: 'POST',
                 headers: {
@@ -50,7 +54,7 @@ const ForgotPassword = () => {
             }
 
             const data = await res.json();
-
+            console.log(data)
             if (!data.email.includes("@") || data.password.length < 6) {
                 setSnackbarMessage("Email non valida o password troppo corta");
                 setSnackbarSeverity("error");

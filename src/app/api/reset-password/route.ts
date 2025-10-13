@@ -8,7 +8,27 @@ import { cookies } from "next/headers";
 
 const JWT_SECRET = process.env.JWT_SECRET!;
 
-const POSTSavePassword = async (req: Request) => {
+export async function POST(req: Request) {
+            let body;
+           /* try {
+                body = await req.json();
+
+            } catch {
+                return NextResponse.json({
+                success: false,
+                message: "Body JSON mancante o non valido"
+                }, { status: 400 });
+            }
+
+            const { email, password } = body;
+            if (!email || !password) {
+                return NextResponse.json({
+                success: false,
+                message: "Email e password richiesti"
+                }, { status: 400 });
+            }*/
+
+
     try {
         const { email, password } = await req.json();
         if (!email || !password) {
@@ -59,6 +79,7 @@ const POSTSavePassword = async (req: Request) => {
         });
 
     } catch (error) {
+        console.log(error)
         console.error("This process is not allowed or not correct!");
         return NextResponse.json({
             success: false,
@@ -67,4 +88,4 @@ const POSTSavePassword = async (req: Request) => {
     };
 };
 
-export default POSTSavePassword;
+//export default POSTSavePassword;
