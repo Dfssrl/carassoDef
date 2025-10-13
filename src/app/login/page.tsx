@@ -32,7 +32,7 @@ const Login = () => {
         }
 
         try {
-            const result = await fetch("/accessUser", {
+            const result = await fetch("/api/accessUser", {
                 method: 'POST',
                 headers: {
                     'Content-Type': "application/json",
@@ -144,7 +144,7 @@ const Login = () => {
                                         onClick={() => {
                                             setLoading(true);
                                         }}>
-                                            Did you forget your password?
+                                           Hai dimenticato la tua password
                                         </Link>
                                     </Typography>
                                 </Box>
