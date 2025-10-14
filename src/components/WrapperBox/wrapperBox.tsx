@@ -19,7 +19,7 @@ const WrapperBox: React.FC<WrapperBoxProps> = ({ children }) => {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "transparent",
-            border: "3px solid white",
+            // border: "3px solid white",
             p: 0,
             m: 0,
         }}>

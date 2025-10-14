@@ -28,7 +28,6 @@ export default function Page() {
                 }}>
                     <Stack spacing={1} sx={{ width: '100%', paddingTop: "100px" }}>
                         <DashBoardComponent toggle={toggle} setToggle={setToggle} />
-                        <button>Avvia sessione</button>
                     </Stack>
                 </Box>
             </Box>

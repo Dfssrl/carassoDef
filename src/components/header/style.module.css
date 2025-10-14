@@ -9,7 +9,7 @@
     height: 120px;
     /* aumentata per dare più spazio al logo */
     background-color: transparent;
-    border: 2px solid white;
+    border-bottom: 2px solid rgb(141, 141, 141);
     z-index: 1000;
 }
 
@@ -23,14 +23,14 @@
        così il wrapper interno (`.logo_image`) può avere dimensione fissa */
     flex: 0 0 auto;
     width: 20%;
-    border: 2px dotted green;
+    /* border: 2px dotted green; */
 }
 
 .timer {
     height: 95%;
     width: 20%;
     margin-left: 20px;
-    border: 2px dotted green;
+    /* border: 2px dotted green; */
 }
 
 .time_box {
@@ -45,25 +45,32 @@
 
 .profile {
     height: 95%;
-    width: 45%;
     margin-left: 20px;
-    border: 2px dotted green;
+    /* border: 2px dotted green; */
 }
 
 .profile_box {
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
     width: 100%;
 }
 
+.number {
+    height: 100%;
+    width: 15%;
+    margin-left: 10px;
+    /* border: 2px solid orangered; */
+}
+
 .azioni {
     height: 95%;
     width: 15%;
     margin-right: 10px;
-    border: 2px dotted green;
+    /* border: 2px dotted green; */
 }
 
 .azioni_box {

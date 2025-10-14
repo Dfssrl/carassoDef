@@ -1,0 +1,19 @@
+.work_component {
+    position: relative;
+    display: flex;
+    max-height: calc(100vh - 250px);
+    min-height: 35rem;
+    width: 100%;
+    background-color: transparent;
+    border: 2px solid white;
+    margin-top: 6.4rem;
+}
+
+.work_calendar {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: transparent;
+    box-shadow: 0 0 15px rgb(0, 0, 0);
+}

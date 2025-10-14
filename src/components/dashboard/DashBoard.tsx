@@ -4,7 +4,7 @@ import BodyCard from "@/components/main/bodyCard"
 
 interface DashBoardProps {
     toggle: 'light' | 'dark';
-    setToggle: (toggle: 'light' | 'dark' ) => void;
+    setToggle: (toggle: 'light' | 'dark') => void;
 }
 
 const DashBoardComponent = ({
@@ -12,7 +12,12 @@ const DashBoardComponent = ({
 }: DashBoardProps) => {
     return (
         <>
-            <Header stateToggle={toggle} setStateToggle={setToggle} startLogin={new Date().getTime()} />
+            <Header
+                stateToggle={toggle}
+                setStateToggle={setToggle}
+                startLogin={new Date().getTime()}
+                operator={"Operator"}
+            />
             <BodyCard data={[]} toggleColor={toggle} />
         </>
     )
