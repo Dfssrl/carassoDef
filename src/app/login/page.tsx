@@ -44,13 +44,16 @@ const Login = () => {
             setLoading(false);
 
             if (!data.success) {
+                alert(data.message)
                 setError(data.message || "Login failed");
                 router.push("/login")
-            } else {
-                router.push("/dashboard");
+            } else if(data.ruolo == 6){
+                router.push("/callcenter/dashboard");
+            } else if(data.ruolo == 5){
+               router.push("/managerCallcenter/dashboard"); // qui va il consultant
             }
         } catch (error) {
-
+        
         }
     };
 

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -5,6 +7,7 @@ import { cookies } from "next/headers";
 import { getDataSource } from "@/connection/data-source";
 import { User } from "@/entities/user";
 import { NextResponse } from "next/server";
+
 
 const JWT_SECRET = process.env.JWT_SECRET!;
 
@@ -16,6 +19,7 @@ const handlerLogin = async (req: Request) => {
         if (!email || !password) {
             return NextResponse.json({
                 success: false,
+<<<<<<< HEAD
                 message: "Email or password required",
             }, { status: 400 });
         }
@@ -32,6 +36,9 @@ const handlerLogin = async (req: Request) => {
             return NextResponse.json({
                 success: false,
                 message: "User not founded",
+=======
+                message: "Email e password obbligatori!"
+>>>>>>> 0511825eccef5fdf33dacc12c1e83c15023851d3
             }, { status: 404 });
         }
 
@@ -50,6 +57,7 @@ const handlerLogin = async (req: Request) => {
             { expiresIn: "3d" },
         );
 
+<<<<<<< HEAD
         (await cookies()).set({
             name: "AuthToken",
             value: token,
@@ -57,6 +65,13 @@ const handlerLogin = async (req: Request) => {
             secure: process.env.NODE_ENV === "production",
             path: "/",
             maxAge: 3 * 24 * 60 * 60,
+=======
+  // Login ok: genera token o sessione (es. JWT)
+  return NextResponse.json({
+            success: true,
+            ruolo: user.ruolo,
+            message: "Login effettuato",
+>>>>>>> 0511825eccef5fdf33dacc12c1e83c15023851d3
         });
 
         return NextResponse.json({
@@ -68,7 +83,12 @@ const handlerLogin = async (req: Request) => {
         console.error(`This login is not allowed`);
         return NextResponse.json({
             success: false,
+<<<<<<< HEAD
             message: `This login is not allowed because ${String(error)}`
+=======
+            
+            message: `Unfortunately process make an error: ${String(error)}`
+>>>>>>> 0511825eccef5fdf33dacc12c1e83c15023851d3
         });
     }
 };

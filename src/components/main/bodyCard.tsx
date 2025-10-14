@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material"
+import { Box } from "@mui/material"
 import { mockCards } from "../mock";
 import Cards from "../cards/Cards";
 import { CardsProps } from "@/@types/CardsProps";

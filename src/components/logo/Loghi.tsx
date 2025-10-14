@@ -1,4 +1,5 @@
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type Logo1Props = React.ComponentPropsWithoutRef<'svg'> & {
   color?: boolean | string;
 };

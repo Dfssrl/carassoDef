@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Box, Stack } from "@mui/material"
 
 
-const DashBoard = () => {
+export default function Page() {
     const [toggle, setToggle] = useState<"light" | "dark">("dark");
     return (
         <WrapperBox>
@@ -35,4 +35,4 @@ const DashBoard = () => {
     )
 };
 
-export default DashBoard;
+//export default DashBoard;

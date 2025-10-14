@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import 'reflect-metadata';
+=======
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+>>>>>>> 0511825eccef5fdf33dacc12c1e83c15023851d3
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -10,7 +15,12 @@ import { cookies } from "next/headers";
 const JWT_SECRET = process.env.JWT_SECRET!;
 
 export async function POST(req: Request) {
+<<<<<<< HEAD
     let body;
+=======
+           
+
+>>>>>>> 0511825eccef5fdf33dacc12c1e83c15023851d3
 
     try {
         const { email, password } = await req.json();
