@@ -116,7 +116,6 @@ const Cards = ({ cards, toggleColor }: Cards) => {
                                         }}>
                                             <Typography variant="h1" fontSize={50} sx={{ color: toggleColor === 'dark' ? "rgba(255, 255, 255, 0.6)" : "rgba(130, 130, 130, 0.6)" }}>{card.numberTypology}</Typography>
                                         </Box>
-                                       
                                     </Box>
                                 );
                             })

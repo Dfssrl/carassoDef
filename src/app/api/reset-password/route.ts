@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -9,24 +11,7 @@ import { cookies } from "next/headers";
 const JWT_SECRET = process.env.JWT_SECRET!;
 
 export async function POST(req: Request) {
-            let body;
-           /* try {
-                body = await req.json();
-
-            } catch {
-                return NextResponse.json({
-                success: false,
-                message: "Body JSON mancante o non valido"
-                }, { status: 400 });
-            }
-
-            const { email, password } = body;
-            if (!email || !password) {
-                return NextResponse.json({
-                success: false,
-                message: "Email e password richiesti"
-                }, { status: 400 });
-            }*/
+           
 
 
     try {

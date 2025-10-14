@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { getDataSource } from "@/connection/data-source";
 import { NextResponse } from "next/server";
 
-const GetUser = async () => {
+export async function GET(req: Request) {
     try {
         const dataSource = await getDataSource();
         const result = await dataSource.query("SELECT * FROM user");
@@ -19,6 +20,4 @@ const GetUser = async () => {
             status: 500,
         });
     }
-};
-
-export default GetUser;
+}

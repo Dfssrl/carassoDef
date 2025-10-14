@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 "use client";
 import WrapperBox from "@/components/WrapperBox/wrapperBox";
 import { Box, Button, CircularProgress, Snackbar, Alert, Stack, TextField, Theme, Typography, useTheme } from "@mui/material"

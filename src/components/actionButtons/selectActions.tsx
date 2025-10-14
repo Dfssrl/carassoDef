@@ -1,4 +1,5 @@
 'use client';
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { useState } from 'react';
 import { Button, IconButton, Menu, MenuItem } from '@mui/material';
