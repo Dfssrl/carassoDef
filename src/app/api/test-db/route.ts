@@ -6,7 +6,12 @@ export async function GET() {
     try {
         const dataSource = await getDataSource(); // Ottieni l'istanza inizializzata
         const result = await dataSource.query("SELECT * FROM clienti");
-        
+        if (!result) {
+            return NextResponse.json({
+                success: false,
+                message: "nessun risultato"
+            }, { status: 404 });
+        }
         return NextResponse.json({
             success: true,
             result

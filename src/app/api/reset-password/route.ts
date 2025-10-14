@@ -10,25 +10,7 @@ import { cookies } from "next/headers";
 const JWT_SECRET = process.env.JWT_SECRET!;
 
 export async function POST(req: Request) {
-            let body;
-           /* try {
-                body = await req.json();
-
-            } catch {
-                return NextResponse.json({
-                success: false,
-                message: "Body JSON mancante o non valido"
-                }, { status: 400 });
-            }
-
-            const { email, password } = body;
-            if (!email || !password) {
-                return NextResponse.json({
-                success: false,
-                message: "Email e password richiesti"
-                }, { status: 400 });
-            }*/
-
+    let body;
 
     try {
         const { email, password } = await req.json();
@@ -74,7 +56,7 @@ export async function POST(req: Request) {
             maxAge: 3 * 24 * 60 * 60,
         });
 
-         return NextResponse.json({
+        return NextResponse.json({
             success: true,
             message: "New password is saved!",
         });

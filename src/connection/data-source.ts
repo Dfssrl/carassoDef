@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
-import { Clienti } from '@/entities/clienti';
 import { User } from '@/entities/user';
 
 let AppDataSource: DataSource | null = null; 
@@ -15,11 +14,11 @@ export const getDataSource = async () => {
     const dataSource = new DataSource({
         type: 'mysql',
         host: 'localhost',
-        port: 3306,
+        port: 3307,
         username:  process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database:  process.env.DB_NAME,
-        entities: [User, Clienti], // Rimuovi il pattern, usa l'array
+        entities: [User], // Rimuovi il pattern, usa l'array
         synchronize: false,
         logging: process.env.NODE_ENV === 'development', // Utile per il debug
     });

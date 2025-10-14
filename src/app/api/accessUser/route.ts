@@ -1,48 +1,76 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+import { cookies } from "next/headers";
 import { getDataSource } from "@/connection/data-source";
 import { User } from "@/entities/user";
 import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
 
 const JWT_SECRET = process.env.JWT_SECRET!;
 
-export async function POST(req: Request) {
-     try {
+const handlerLogin = async (req: Request) => {
+    {/** Prima di mandare tutto in produzione ricordarsi di 
+        implementare un Rate Limiting */}
+    try {
         const { email, password } = await req.json();
         if (!email || !password) {
             return NextResponse.json({
                 success: false,
-                message: "Email and password required!"
+                message: "Email or password required",
+            }, { status: 400 });
+        }
+
+        const dataSource = await getDataSource();
+
+        const user = await dataSource
+            .getRepository(User)
+            .createQueryBuilder("user")
+            .where("user.email = :email", { email })
+            .getOne();
+
+        if (!user) {
+            return NextResponse.json({
+                success: false,
+                message: "User not founded",
             }, { status: 404 });
         }
 
-     const dataSource = await getDataSource();
-  const userRepo = dataSource.getRepository(User);
-  const user = await userRepo.findOneBy({ email });
-  if (!user) {
-    throw new Error("Utente non trovato");
-  }
+        const matchPassword = await bcrypt.compare(password, user.password);
+        if (!matchPassword) {
+            return NextResponse.json({
+                success: false,
+                message: "Password is invalid!",
+            }, { status: 404 });
+        }
 
-  const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch) {
-    throw new Error("Password errata");
-  }
+        // se i dati corrispondessero allora...
+        const token = jwt.sign(
+            { id: user.id, email: user.email },
+            JWT_SECRET,
+            { expiresIn: "3d" },
+        );
 
-  // Login ok: genera token o sessione (es. JWT)
-  return NextResponse.json({
-            success: true,
-            message: "Login effettuato",
+        (await cookies()).set({
+            name: "AuthToken",
+            value: token,
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            path: "/",
+            maxAge: 3 * 24 * 60 * 60,
         });
+
+        return NextResponse.json({
+            success: true,
+            message: "Your credential are valid",
+        });
+
     } catch (error) {
-        console.log(error)
-        console.error("This process is not allowed or not correct!");
+        console.error(`This login is not allowed`);
         return NextResponse.json({
             success: false,
-            message: `Unfortunately process make an error: ${String(error)}`
+            message: `This login is not allowed because ${String(error)}`
         });
-    };
-}
+    }
+};
 
-//export default POSTSavePassword;
+export default handlerLogin;
