@@ -26,7 +26,6 @@ export default function WrapperBoxSession({
                 startLogin={startLogin}
                 operator={operator}
             />
-
             <Box
                 component="div"
                 className={className}
@@ -42,7 +41,7 @@ export default function WrapperBoxSession({
                 }}
             >
                 <WrapperBox>
-                    <WorkComponent />
+                    <WorkComponent toggle={toggle} />
                 </WrapperBox>
             </Box>
         </>
