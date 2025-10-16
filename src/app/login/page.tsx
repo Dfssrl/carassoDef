@@ -1,14 +1,16 @@
 "use client"
 import React, { useState } from 'react';
-import styles from './style.module.css';
-
 import { useRouter } from 'next/navigation';
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Box, Paper, Typography, CircularProgress } from '@mui/material';
-import Link from 'next/link';
+import { Dialog, CircularProgress } from '@mui/material';
+
+import SignIn from './signIn';
+import SignUp from './signUp';
 const Login = () => {
     const [state, setState] = useState<Record<string, string>>({ email: '', password: '' });
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
+    const [signIn, setSignIn] = useState<boolean>(true);
+    const [alignment, setAlignment] = useState<string>("SignUp");
 
     const router = useRouter();
 
@@ -47,13 +49,13 @@ const Login = () => {
                 alert(data.message)
                 setError(data.message || "Login failed");
                 router.push("/login")
-            } else if(data.ruolo == 6){
+            } else if (data.ruolo == 6) {
                 router.push("/callcenter/dashboard");
-            } else if(data.ruolo == 5){
-               router.push("/managerCallcenter/dashboard"); // qui va il consultant
+            } else if (data.ruolo == 5) {
+                router.push("/managerCallcenter/dashboard"); // qui va il consultant
             }
         } catch (error) {
-        
+
         }
     };
 
@@ -98,60 +100,31 @@ const Login = () => {
                                 },
                             }}
                         >
-                            <form method='POST' action="/accessUser" onSubmit={handleLogin}>
-                                <DialogTitle>Login</DialogTitle>
-                                <DialogContent>
-                                    <TextField
-                                        autoFocus
-                                        margin="dense"
-                                        id="email"
-                                        label="Email"
-                                        type="email"
-                                        fullWidth
-                                        variant="outlined"
-                                        value={state.email}
-                                        onChange={handleChange}
+                            {
+                                signIn ? (
+                                    <SignIn
+                                        state={state}
+                                        open={true}
+                                        setError={setError}
+                                        handleLogin={handleLogin}
+                                        handleChange={handleChange}
+                                        loading={loading}
+                                        setLoading={setLoading}
+                                        setSignIn={setSignIn}
                                     />
-                                    <TextField
-                                        margin="dense"
-                                        id="password"
-                                        label="Password"
-                                        type="password"
-                                        fullWidth
-                                        variant="outlined"
-                                        value={state.password}
-                                        onChange={handleChange}
+                                ) : (
+                                    <SignUp
+                                        state={state}
+                                        open={true}
+                                        setError={setError}
+                                        handleLogin={handleLogin}
+                                        handleChange={handleChange}
+                                        loading={loading}
+                                        setLoading={setLoading}
+                                        setSignIn={setSignIn}
                                     />
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button type='submit' variant="contained" disabled={loading}>
-                                        {loading ? 'Loading...' : 'Accedi'}
-                                    </Button>
-                                </DialogActions>
-                            </form>
-                            <DialogContent>
-                                <Box sx={{
-                                    position: "relative",
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    alignItems: "center",
-                                    width: "100%",
-                                    height: "2rem",
-                                    // border: "1px solid red",
-                                }}>
-                                    <Typography variant="body2" component={'span'} sx={{
-                                        color: "rgb(170, 1, 1)",
-                                        fontSize: "0.7rem",
-                                    }}>
-                                        <Link href={"/forgotPassword"}
-                                        onClick={() => {
-                                            setLoading(true);
-                                        }}>
-                                           Hai dimenticato la tua password
-                                        </Link>
-                                    </Typography>
-                                </Box>
-                            </DialogContent>
+                                )
+                            }
                         </Dialog>
                     )
             }

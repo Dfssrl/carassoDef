@@ -12,9 +12,6 @@ import { cookies } from "next/headers";
 const JWT_SECRET = process.env.JWT_SECRET!;
 
 export async function POST(req: Request) {
-           
-
-
     try {
         const { email, password } = await req.json();
         if (!email || !password) {

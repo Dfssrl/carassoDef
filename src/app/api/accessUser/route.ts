@@ -12,7 +12,7 @@ import { cookies } from "next/headers";
 const JWT_SECRET = process.env.JWT_SECRET!;
 
 export async function POST(req: Request) {
-     try {
+    try {
         const { email, password } = await req.json();
         if (!email || !password) {
             return NextResponse.json({
@@ -21,20 +21,47 @@ export async function POST(req: Request) {
             }, { status: 404 });
         }
 
-     const dataSource = await getDataSource();
-  const userRepo = dataSource.getRepository(User);
-  const user = await userRepo.findOneBy({ email });
-  if (!user) {
-    throw new Error("Utente non trovato");
-  }
+        const dataSource = await getDataSource();
+        const userRepo = dataSource.getRepository(User);
+        const user = await userRepo.findOneBy({ email });
+        if (!user) {
+            const dataSource = await getDataSource();
+            const result = dataSource.getRepository(User);
+            return NextResponse.json({
+                success: false,
+                message: 'User not registered in this app'
+            })
+        }
 
-  const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch) {
-    throw new Error("Password errata");
-  }
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            throw new Error("Password errata");
+        }
 
-  // Login ok: genera token o sessione (es. JWT)
-  return NextResponse.json({
+        const token = jwt.sign(
+            {
+                id: user.id,
+                email: user.email,
+                ruolo: user.ruolo,
+            }, 
+            JWT_SECRET,
+            {
+                expiresIn: "3d",
+            }
+        );
+        const storedCookies = await cookies();
+        storedCookies.set(
+            "token", token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'lax',
+                path: '/',
+                maxAge: 3 * 24 * 60 * 60,   
+            }
+        );
+        console.log("Il token di accesso è: ", token);
+        // Login ok: genera token o sessione (es. JWT)
+        return NextResponse.json({
             success: true,
             ruolo: user.ruolo,
             message: "Login effettuato",
@@ -44,7 +71,6 @@ export async function POST(req: Request) {
         console.error("This process is not allowed or not correct!");
         return NextResponse.json({
             success: false,
-            
             message: `Unfortunately process make an error: ${String(error)}`
         });
     };

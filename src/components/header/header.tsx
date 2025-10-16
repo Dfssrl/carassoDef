@@ -6,6 +6,7 @@ import TimeLogin from "../time-login/TimeLogin";
 
 import { alpha, Box, Stack, Typography } from "@mui/material"
 import { blue, green, grey } from "@mui/material/colors";
+import { useRouter } from "next/navigation";
 
 interface HeaderProps {
     stateToggle: "light" | "dark";
@@ -20,6 +21,26 @@ const Header = ({
     startLogin,
     operator
 }: HeaderProps) => {
+    const router = useRouter();
+
+    const logout = async () => {
+        try {
+            const res = await fetch("/api/logout", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+            if (!res.ok) {
+                console.log("status: ", res.statusText);
+                res.statusText;
+            } else {
+                router.push('/login');
+            }
+        } catch (error) {
+            console.error("Error to call API");
+        }
+    }
 
     return (
         <Box className={styles.container_header}>
@@ -85,7 +106,7 @@ const Header = ({
             }
             <Box className={styles.azioni}>
                 <Box className={styles.azioni_box}>
-                    <MenuChooseActions value={stateToggle} setValue={setStateToggle} logout={() => { }} />
+                    <MenuChooseActions value={stateToggle} setValue={setStateToggle} logout={logout} />
                 </Box>
             </Box>
         </Box>
